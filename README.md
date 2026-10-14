@@ -8,6 +8,13 @@ The tutor builds from known concepts, uses small examples, and saves enough stat
 to resume in another session or tool. Learning branches use dedicated Git
 worktrees and AI-managed draft PRs. You decide when to merge.
 
+## Acknowledgments
+
+Inspired by [amosblomqvist/learn](https://github.com/amosblomqvist/learn).
+Credit to its author for sharing the original AI learning system and teaching
+workflow. This project adapts those ideas for Codex and Claude Code, with shared
+rules, private learning records, and Git worktree and PR support.
+
 ## Start a private learning workspace
 
 Create a private repository on GitHub, then clone it. From its root, run:
@@ -114,5 +121,4 @@ The checks do not install or require Homebrew or the optional display tools.
 Users do not need to run this workflow to learn.
 
 Tests use temporary synthetic workspaces. The example lesson is also synthetic.
-The repository uses the [MIT license](LICENSE). The workflow was inspired by
-[amosblomqvist/learn](https://github.com/amosblomqvist/learn).
+The repository uses the [MIT license](LICENSE).
