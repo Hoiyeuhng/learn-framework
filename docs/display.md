@@ -4,13 +4,25 @@ Text-only learning needs no renderer. For a lesson pane, install presenterm,
 Pandoc, and Typst. Install Node.js/npm if you need Mermaid diagrams.
 Use a terminal that supports presenterm's image protocols.
 
-On macOS with Homebrew:
+Install these tools with your preferred package manager or their official
+installers. Make their commands available in `PATH`. Homebrew is one option on
+macOS; it is not required by the framework or its checks.
+
+For example, if you already use Homebrew on macOS:
 
 ```sh
 brew install presenterm pandoc typst tmux node
+```
+
+After installing the tools by your chosen method, run:
+
+```sh
 ./framework/bin/setup-mermaid
 ./framework/bin/learn doctor --render
 ```
+
+Skip `setup-mermaid` if you already installed `mmdc` by another method. Install
+tmux only if you want the pane layout described below.
 
 `setup-mermaid` installs Mermaid CLI 11.17.0 in the user cache, outside both repos.
 It reuses Chrome on macOS when available. Otherwise Puppeteer can download its

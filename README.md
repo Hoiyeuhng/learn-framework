@@ -53,6 +53,9 @@ independent background service or guaranteed policy enforcement.
 
 ## Tools
 
+Install the tools for the features you want. Use your preferred package manager
+or the tools' official installers. Homebrew is optional.
+
 | Need | Tools |
 | --- | --- |
 | Learning and records | Git, Codex or Claude Code |
@@ -105,6 +108,10 @@ notes, answers, topic records, or private configuration. Run:
 python3 -m unittest discover -s tests -v
 sh -n bin/setup-mermaid
 ```
+
+GitHub Actions runs these contributor checks on Linux and macOS with Python.
+The checks do not install or require Homebrew or the optional display tools.
+Users do not need to run this workflow to learn.
 
 Tests use temporary synthetic workspaces. The example lesson is also synthetic.
 The repository uses the [MIT license](LICENSE). The workflow was inspired by
