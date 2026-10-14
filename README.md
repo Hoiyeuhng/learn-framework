@@ -1,12 +1,11 @@
 # learn-framework
 
-A reusable learning workflow for Codex and Claude Code. Keep the framework in a
-public repository. Keep goals, notes, answers, and progress in your own private
-learning repository.
+Shared teaching instructions and templates for Codex and Claude Code. Keep this
+framework in a public repository and your learning records in a private one.
 
-The tutor builds from known concepts, uses small examples, and saves enough state
-to resume in another session or tool. Learning branches use dedicated Git
-worktrees and AI-managed draft PRs. You decide when to merge.
+The tutor connects new ideas to what you know, uses small examples, and saves
+progress so another session or tool can continue. Each learning round uses a
+separate Git worktree and an AI-managed draft PR. You decide when to merge.
 
 ## Acknowledgments
 
@@ -15,75 +14,63 @@ Credit to its author for sharing the original AI learning system and teaching
 workflow. This project adapts those ideas for Codex and Claude Code, with shared
 rules, private learning records, and Git worktree and PR support.
 
-## Start a private learning workspace
+## Start with your AI coding tool
 
-Create a private repository on GitHub, then clone it. From its root, run:
+Create or open your private learning repository. Give Codex or Claude Code this
+request:
 
-```sh
-git submodule add https://github.com/Hoiyeuhng/learn-framework.git framework
-./framework/bin/learn setup
-./framework/bin/learn doctor
-```
+> Read https://github.com/Hoiyeuhng/learn-framework. Use it as the `framework/`
+> Git submodule in this private learning repository. Adapt its workspace templates
+> without overwriting my existing records or preferences. Read the tool list and
+> check what is installed. Use my operating system and preferred package manager
+> for any tools I need. I want [text-only learning / a rendered lesson pane].
 
-Commit the generated entry points and submodule pointer in your private repo.
-Open Codex or Claude Code from that workspace. For example:
+The AI handles repository configuration and tool-specific commands. This
+framework provides documentation and templates, with no setup scripts, helper
+CLI, or required CI workflow. See [workspace guidance](docs/workspaces.md) when
+adapting an existing repository.
 
-> I want to understand this component well enough to review changes to it.
-> Help me define the scope and assess the needed knowledge.
+## Tools we use
 
-Setup creates only missing files. It refuses to overwrite existing files.
-For an existing learning repo, see [migration](docs/workspaces.md).
+Install only what your chosen features need. Use your preferred package manager
+or the tools' official installers. Homebrew is optional.
+
+| Feature | Tools |
+| --- | --- |
+| Learning and saved records | Git, plus Codex or Claude Code |
+| Automatic learning PRs | GitHub CLI (`gh`), authentication, and repository write access |
+| Optional lesson display | presenterm and a terminal with image support |
+| Optional math rendering | Pandoc and Typst |
+| Optional Mermaid rendering | Node.js/npm, Mermaid CLI (`mmdc`), and Chrome/Chromium |
+| Optional side-by-side layout | tmux |
+
+Text-only learning needs no renderer. Your AI tool can identify suitable versions
+and configure the tools already on your machine. The [display guide](docs/display.md)
+records the tested tools, display settings, and fixes for blank equations.
 
 ## What lives where
 
-```text
-private-learning-repo/
-  AGENTS.md          # Small loader, not a second set of teaching rules
-  CLAUDE.md          # Imports AGENTS.md
-  preferences.md     # Personal preferences
-  framework/         # Git submodule: this public repository
-  topics/<topic>/
-    plan.md          # Scope, dependencies, and evidence
-    notes.md         # Compact notes on what was taught
-    misses.md        # Actual errors and review history
-    state.md         # Resume point and learning PR
-    lesson.md        # Optional current lesson display
-```
-
-[AGENTS.md](AGENTS.md) is the single source of shared teaching rules. Topic
-scaffolds are in [templates/topic](templates/topic). The workspace loader tells
-Codex to read the shared file explicitly. Claude loads the same file through
-[imports](https://code.claude.com/docs/en/memory#import-additional-files).
-See the official [Codex instructions guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-for instruction discovery. These are instructions for an AI agent, not an
-independent background service or guaranteed policy enforcement.
-
-## Tools
-
-Install the tools for the features you want. Use your preferred package manager
-or the tools' official installers. Homebrew is optional.
-
-| Need | Tools |
+| Path in your private repository | Purpose |
 | --- | --- |
-| Learning and records | Git, Codex or Claude Code |
-| Workspace helpers | Python 3.9 or newer; standard library only |
-| Automatic PRs | GitHub CLI (`gh`), authentication, and repository write access |
-| Optional lesson display | presenterm and a terminal with image support |
-| Optional math display | Pandoc and Typst |
-| Optional Mermaid display | Node.js/npm, Mermaid CLI, and Chrome/Chromium |
-| Optional side-by-side layout | tmux |
+| `framework/` | This public repository, pinned as a Git submodule |
+| `AGENTS.md` | A small loader for shared rules and personal preferences |
+| `CLAUDE.md` | Imports the same loader for Claude Code |
+| `preferences.md` | Your personal preferences |
+| `topics/<topic>/plan.md` | Goal, dependencies, and evidence of understanding |
+| `topics/<topic>/notes.md` | Compact notes on what was taught |
+| `topics/<topic>/misses.md` | Actual errors and review history |
+| `topics/<topic>/state.md` | Resume point and learning PR |
+| `topics/<topic>/lesson.md` | Optional current lesson display |
 
-No API key, Python package install, or renderer is needed for text-only learning.
-Use your existing AI tool and account.
+[AGENTS.md](AGENTS.md) is the single source of shared teaching rules. The
+[workspace templates](templates/workspace) provide the loaders and preferences;
+[topic templates](templates/topic) provide the learning records.
 
-```sh
-./framework/bin/learn doctor
-./framework/bin/learn doctor --render
-./framework/bin/learn present your-topic
-```
-
-Display setup, a smoke test, and fixes for blank equations are in
-[the display guide](docs/display.md). The tools do not change your tmux panes.
+The root loader tells Codex to read the shared rules explicitly. Claude can load
+them through [imports](https://code.claude.com/docs/en/memory#import-additional-files).
+See the official [Codex instructions guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+for instruction discovery. These files guide the AI; they do not run a background
+service.
 
 ## Daily use
 
@@ -93,32 +80,15 @@ Display setup, a smoke test, and fixes for blank equations are in
 - Change topics: “Pause X and start Y.”
 - Finish: “Save my progress.”
 
-The agent creates or restores a dedicated worktree. It opens a draft PR after
-saving initial records, then updates that PR at checkpoints. A paused topic keeps
-its worktree and PR. A completed round becomes ready for your review.
-
-In every new clone or worktree, initialize the pinned framework:
-
-```sh
-git submodule update --init --recursive
-```
-
-Upgrade the framework in a separate maintenance PR. Normal lessons use the
-recorded commit. See [workspaces and upgrades](docs/workspaces.md).
+The AI creates or restores the topic's worktree and initializes the pinned
+submodule. It opens a draft PR after saving initial records and updates the same
+PR at checkpoints. Paused topics keep their worktrees and PRs. Completed rounds
+become ready for your review.
 
 ## Contributing
 
-Use a dedicated linked worktree. Keep changes generic: do not submit personal
-notes, answers, topic records, or private configuration. Run:
+Use a dedicated worktree and a separate framework PR. Check links, templates,
+and any affected display settings. Keep personal notes, answers, progress, and
+configuration in the private learning repository. The example lesson is synthetic.
 
-```sh
-python3 -m unittest discover -s tests -v
-sh -n bin/setup-mermaid
-```
-
-GitHub Actions runs these contributor checks on Linux and macOS with Python.
-The checks do not install or require Homebrew or the optional display tools.
-Users do not need to run this workflow to learn.
-
-Tests use temporary synthetic workspaces. The example lesson is also synthetic.
 The repository uses the [MIT license](LICENSE).

@@ -1,78 +1,59 @@
 # Workspaces, migration, and upgrades
 
-The framework is a Git submodule. Each learning commit records one exact framework
-commit. Private records stay in the parent repository, including its branches and
-PRs. Adding a public submodule does not publish the parent repository.
+The AI coding tool manages the repository configuration. This framework supplies
+instructions, templates, and display examples. Choose tools from the README and
+adapt their configuration to the learner's machine.
 
-## Existing learning repository
+## Private learning workspace
 
-Make a dedicated maintenance worktree from the latest default branch. Add the
-framework submodule there. Replace the old shared-rule file with the small loader
-in `framework/templates/workspace/AGENTS.md`. Keep the original file in Git history.
-Use the matching `CLAUDE.md`, and put personal overrides in `preferences.md`.
+Add the public framework as a `framework/` Git submodule in a dedicated
+maintenance worktree of the private repository. Use the files in
+`templates/workspace/` as examples for the root loader and personal preferences.
+Inspect existing files before changing them; preserve personal settings and
+learning records.
 
-Compare the existing templates with `framework/templates/topic/` before removing
-local duplicates. Preserve unique changes. Point future topic creation to the
-framework templates. Existing topic files do not need to be recreated.
+The framework's `AGENTS.md` holds shared teaching rules. The private root loader
+loads those rules and `preferences.md`. Its `CLAUDE.md` imports that loader.
+Keep actual topic records in the private repository, using `templates/topic/`
+for new topics. Each parent commit pins one exact framework commit.
 
-Keep existing `lesson.md`, `display.yaml`, and `mermaid.json` files. The shared
-`present` command honors topic display configuration. A topic's old `display.sh`
-can remain in use or become a short wrapper:
+Initialize the pinned submodule in every new clone or linked worktree. Keep
+framework changes separate from learning changes. Publishing the framework does
+not publish the parent repository or its learning branches.
 
-```sh
-#!/bin/sh
-set -eu
-cd "$(dirname "$0")/../.."
-exec ./framework/bin/learn present your-topic
-```
+## Existing learning repositories
 
-Do not run setup over customized loaders or preferences. It refuses to replace
-them. Reconcile those files in the maintenance PR.
+Replace duplicated shared rules with the workspace loader. Move personal
+overrides into `preferences.md`. Keep old rules in Git history. Compare local
+templates with the shared ones before removing duplicates; preserve unique edits.
 
-## Open learning branches
+Existing topic files need no conversion. Keep their `lesson.md`, `display.yaml`,
+and `mermaid.json` files. Existing local launchers may remain in use. For direct
+presenterm use, select the intended configuration as described in
+[the display guide](display.md). Do not delete configuration files that a topic
+still references.
 
-Merge the framework-refactor PR into the default branch first. Then, from each
-learning branch's own worktree:
-
-```sh
-git fetch origin
-git merge origin/main
-git submodule update --init --recursive
-```
-
-Use the actual default branch if it is not `main`. If the merge conflicts in
-`AGENTS.md`, keep the framework loader and move any personal changes into
-`preferences.md`. For duplicate template conflicts, keep the shared templates and
-preserve any unique edits. Never discard topic records or pending questions.
-
-This migration belongs in each branch only when that branch is resumed. Do not
-merge unfinished learning branches together. Keep their existing PRs and history.
+Merge the framework refactor into the default branch first. When resuming an
+older topic, merge that default branch into the topic's own worktree and
+initialize its pinned submodule. Resolve rule conflicts in favor of the shared
+loader, while preserving personal settings and all topic evidence. Keep separate
+learning branches and their existing PRs.
 
 ## Framework updates
 
-Create a dedicated maintenance worktree in the private repository. In it:
+Use a dedicated private maintenance worktree. Fetch the framework's default
+branch, check out the intended commit inside the submodule, and inspect the
+change. Check the loaders, template paths, and display settings that it affects.
+Commit the new submodule pointer in a private maintenance PR.
 
-```sh
-git submodule update --init --recursive
-git -C framework fetch origin main
-git -C framework checkout --detach origin/main
-./framework/bin/learn doctor
-```
-
-Review the old and new framework commits and test your display if you use it.
-Commit the changed submodule pointer in a private maintenance PR. Do not use
-`git submodule update --remote` during lessons, because it changes the selected
-version. Do not edit the detached framework checkout for feature work.
-
-For framework changes, create a separate linked worktree of the framework repo,
-open a public PR, then update the private pointer after it is merged. Keep real
-notes and personal data out of commits and public PR descriptions.
+Normal lessons use the recorded commit. Do not advance the framework to a branch
+tip as part of a lesson. Make shared framework changes in a separate framework
+worktree and public PR, then update the private pointer after merge. Keep private
+data out of public commits and PR descriptions.
 
 ## First extraction across two PRs
 
-If the private refactor points at the public framework PR's commit, that commit
-must be pushed before the private PR is opened. Merge the public framework PR
-first. A regular merge preserves that commit. If the public PR is squash-merged
-or rebased, update the private pointer to the resulting `main` commit before
-merging the private refactor. This keeps the selected commit reachable from the
-public default branch.
+Push the framework commit before opening a private PR that references it. Merge
+the public framework PR first. A regular merge preserves its commits. If it is
+squash-merged or rebased, update the private pointer to the resulting default
+branch commit before merging the private refactor.
