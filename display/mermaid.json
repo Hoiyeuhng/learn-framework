@@ -1,0 +1,5 @@
+{
+  "fontFamily": "Arial, sans-serif",
+  "themeVariables": {"fontSize": "22px"},
+  "flowchart": {"htmlLabels": false, "curve": "linear"}
+}
