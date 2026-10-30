@@ -8,7 +8,7 @@ Replace placeholders when creating a topic. Record only actual goals, plans, and
 - Completion criterion: <A task I can independently perform>
 - Included scope: <Material covered in this round>
 - Outside this round: <Material the goal does not require>
-- Plan approval: Awaiting approval
+- Plan approval: <Awaiting approval / Approved, with date / Not proposed: practice-only scope>
 - Last updated: <YYYY-MM-DD>
 
 ## Assessment
@@ -40,6 +40,16 @@ Statuses: To assess, To learn, In progress, Passed in session, Passed on review.
 | N1 | Understood foundation | None | To assess | None yet | None yet |
 | N2 | New concept | N1 | To learn | None yet | None yet |
 | N3 | Target task | N2 | To learn | None yet | None yet |
+
+## Practice targets and evidence
+
+<Optional. Add only when practice starts. Select targets within the approved scope and explain the skill to exercise.>
+
+| Date | Node and practice mode | Outcome and evidence | Remaining need |
+| --- | --- | --- | --- |
+| <YYYY-MM-DD> | <Node ID; recall, discrimination, or composition> | <Actual attempt and reasoning; independent, assisted with exact hints, unresolved, or ended at my request; link error record if applicable> | <New-situation retest or None> |
+
+Keep immediate practice retests distinct from later review evidence. Preserve earlier attempts and assistance when adding new results.
 
 ## Key sources
 
