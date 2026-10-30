@@ -7,6 +7,16 @@ The tutor connects new ideas to what you know, uses small examples, and saves
 progress so another session or tool can continue. Each learning round uses a
 separate Git worktree and an AI-managed draft PR. You decide when to merge.
 
+Teaching builds understanding, practice exercises its use, and review checks what
+you retain. Practice uses varied problems, gradual hints, and new-situation
+retests. Connections in topic notes link related ideas across subjects. The same
+four records preserve the material, actual attempts, assistance, and resume point.
+
+Language, writing style, reference works, and display layout belong in the private
+workspace's `preferences.md`. Public templates contain placeholders, and examples
+use synthetic material. The publication rules in [AGENTS.md](AGENTS.md#public-and-private-content)
+keep learner-specific data out of the shared framework.
+
 ## Acknowledgments
 
 Inspired by [amosblomqvist/learn](https://github.com/amosblomqvist/learn).
@@ -56,10 +66,10 @@ records the tested tools, display settings, and fixes for blank equations.
 | `AGENTS.md` | A small loader for shared rules and personal preferences |
 | `CLAUDE.md` | Imports the same loader for Claude Code |
 | `preferences.md` | Your personal preferences |
-| `topics/<topic>/plan.md` | Goal, dependencies, and evidence of understanding |
-| `topics/<topic>/notes.md` | Compact notes on what was taught |
-| `topics/<topic>/misses.md` | Actual errors and review history |
-| `topics/<topic>/state.md` | Resume point and learning PR |
+| `topics/<topic>/plan.md` | Goal, dependencies, and teaching, practice, and review evidence |
+| `topics/<topic>/notes.md` | Compact notes and useful connections across topics |
+| `topics/<topic>/misses.md` | Actual errors, assistance, diagnoses, and retest history |
+| `topics/<topic>/state.md` | Session mode, active problem, resume point, and learning PR |
 | `topics/<topic>/lesson.md` | Optional current lesson display |
 
 [AGENTS.md](AGENTS.md) is the single source of shared teaching rules. The
@@ -76,6 +86,7 @@ service.
 
 - Start: “I want to learn X so I can do Y.”
 - Resume: “Continue topic X. Read its records first.”
+- Practice: “Give me mixed application problems from topic X, with hints only when I ask.”
 - Review: “Quiz me on the unresolved errors in topic X.”
 - Change topics: “Pause X and start Y.”
 - Finish: “Save my progress.”
