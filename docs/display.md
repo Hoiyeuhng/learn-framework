@@ -22,9 +22,9 @@ requirements. Verify settings against the versions installed on the machine.
 
 ## Lesson layout
 
-When the learner wants side-by-side panes, keep chat on the left and the complete
-lesson on the right in the same tmux window. Reuse existing panes without
-interrupting the chat process. Check tmux's `allow-passthrough` setting when
+When the learner wants side-by-side panes, use the workspace's preferred layout.
+For example, chat and the complete lesson can share a tmux window. Reuse existing
+panes without interrupting the chat process. Check tmux's `allow-passthrough` setting when
 images do not appear; changing it affects the session.
 
 Save the active lesson in `topics/<topic>/lesson.md`. Launch presenterm directly

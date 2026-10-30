@@ -12,6 +12,11 @@ you retain. Practice uses varied problems, gradual hints, and new-situation
 retests. Connections in topic notes link related ideas across subjects. The same
 four records preserve the material, actual attempts, assistance, and resume point.
 
+Language, writing style, reference works, and display layout belong in the private
+workspace's `preferences.md`. Public templates contain placeholders, and examples
+use synthetic material. The publication rules in [AGENTS.md](AGENTS.md#public-and-private-content)
+keep learner-specific data out of the shared framework.
+
 ## Acknowledgments
 
 Inspired by [amosblomqvist/learn](https://github.com/amosblomqvist/learn).
