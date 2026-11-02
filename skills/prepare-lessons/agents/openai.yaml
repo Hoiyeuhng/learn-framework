@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Lessons"
+  short_description: "Reuse prepared lessons and conditional feedback"
+  default_prompt: "Use $prepare-lessons to prepare the next part of this lesson and reuse verified feedback pages."

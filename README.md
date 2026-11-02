@@ -35,9 +35,10 @@ request:
 > check what is installed. Use my operating system and preferred package manager
 > for any tools I need. I want [text-only learning / a rendered lesson pane].
 
-The AI handles repository configuration and tool-specific commands. This
-framework provides documentation and templates, with no setup scripts, helper
-CLI, or required CI workflow. See [workspace guidance](docs/workspaces.md) when
+The AI handles repository configuration and tool-specific commands. The core
+workflow uses documentation and templates, with no required setup scripts or CI
+workflow. The optional prepared-lesson skill includes a local helper for caching
+and displaying verified pages. See [workspace guidance](docs/workspaces.md) when
 adapting an existing repository.
 
 ## Tools we use
@@ -95,6 +96,18 @@ The AI creates or restores the topic's worktree and initializes the pinned
 submodule. It opens a draft PR after saving initial records and updates the same
 PR at checkpoints. Paused topics keep their worktrees and PRs. Completed rounds
 become ready for your review.
+
+## Optional prepared lessons
+
+When preparation speed matters, use [prepare-lessons](skills/prepare-lessons/SKILL.md)
+to prepare upcoming material and conditional feedback before the next reply. The
+tutor still evaluates the actual answer before choosing a route. Rendered assets,
+answer evidence, display settings, and timing logs stay in the private workspace.
+
+For Codex skill discovery, copy the `skills/prepare-lessons` directory into your
+configured skill directory. Its [pack reference](skills/prepare-lessons/references/pack-format.md)
+describes the optional helper. The skill reads workspace preferences rather than
+imposing a language, layout, or response-time target.
 
 ## Contributing
 
