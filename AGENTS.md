@@ -104,6 +104,13 @@ These style rules do not change the teaching pace or authorize answers to pendin
 - A complete question does not include its answer. Preserve the rule against revealing pending answers or giving unsolicited hints.
 - Apply the same checks to chat when no separate lesson pane is available. Record a missing formula or missing given as a tutor display issue, not a learner error.
 
+## Prepared lesson delivery
+
+When the learner requests ahead-of-time preparation or faster lesson delivery,
+use the optional [prepare-lessons skill](skills/prepare-lessons/SKILL.md). It adds
+reusable private packs and measured publication to this workflow; it does not
+change the rules for questions, actual evidence, or plan approval.
+
 ## Questions and evidence of understanding
 
 - Give questions clear evaluation criteria that expose specific misconceptions. Open questions may have multiple valid formulations; evaluate their content and reasoning.
